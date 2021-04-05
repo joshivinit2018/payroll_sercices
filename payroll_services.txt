@@ -293,3 +293,58 @@ mysql> SELECT * FROM employee_payroll;
 
 
 //use case 9
+mysql> ALTER TABLE employee_payroll RENAME COLUMN salary TO basic_pay;
+Query OK, 0 rows affected (1.62 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE employee_payroll ADD deduction Double NOT NULL AFTER basic_pay;
+Query OK, 0 rows affected (1.48 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE employee_payroll ADD taxable_pay Double NOT NULL AFTER deduction;
+Query OK, 0 rows affected (3.24 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE employee_payroll ADD tax Double NOT NULL AFTER taxable_pay;
+Query OK, 0 rows affected (2.70 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE employee_payroll ADD net_pay Double NOT NULL AFTER tax;
+Query OK, 0 rows affected (2.09 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe employee_payroll;
++-------------+--------------+------+-----+---------+----------------+
+| Field       | Type         | Null | Key | Default | Extra          |
++-------------+--------------+------+-----+---------+----------------+
+| id          | int unsigned | NO   | PRI | NULL    | auto_increment |
+| name        | varchar(150) | NO   |     | NULL    |                |
+| phon_number | varchar(250) | YES  |     | NULL    |                |
+| address     | varchar(250) | YES  |     | TBD     |                |
+| department  | varchar(150) | NO   |     | NULL    |                |
+| gender      | char(1)      | YES  |     | NULL    |                |
+| basic_pay   | double       | NO   |     | NULL    |                |
+| deduction   | double       | NO   |     | NULL    |                |
+| taxable_pay | double       | NO   |     | NULL    |                |
+| tax         | double       | NO   |     | NULL    |                |
+| net_pay     | double       | NO   |     | NULL    |                |
+| start       | date         | NO   |     | NULL    |                |
++-------------+--------------+------+-----+---------+----------------+
+12 rows in set (0.01 sec)
+
+mysql> SELECT * FROM employee_payroll;
++----+---------+-------------+---------+------------+--------+-----------+-----------+-------------+-----+---------+------------+
+| id | name    | phon_number | address | department | gender | basic_pay | deduction | taxable_pay | tax | net_pay | start      |
++----+---------+-------------+---------+------------+--------+-----------+-----------+-------------+-----+---------+------------+
+|  1 | Bill    | NULL        | NULL    |            | M      |   1000000 |         0 |           0 |   0 |       0 | 2018-01-03 |
+|  2 | Teresa  | NULL        | NULL    |            | F      |   3000000 |         0 |           0 |   0 |       0 | 2019-11-13 |
+|  3 | Charlie | NULL        | NULL    |            | M      |   3000000 |         0 |           0 |   0 |       0 | 2020-05-21 |
++----+---------+-------------+---------+------------+--------+-----------+-----------+-------------+-----+---------+------------+
+3 rows in set (0.03 sec)
+
+
+
+//use case 10
+
+
+
