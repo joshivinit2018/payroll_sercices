@@ -165,4 +165,48 @@ mysql> SELECT * FROM employee_payroll;
 
 //use case 7
 
+mysql> SELECT AVG(salary) FROM employee_payroll WHERE gender = 'M' GROUP BY gender;
++-------------+
+| AVG(salary) |
++-------------+
+|     2000000 |
++-------------+
+1 row in set (0.04 sec)
+
+mysql> SELECT AVG(salary) FROM employee_payroll GROUP BY gender;
++-------------+
+| AVG(salary) |
++-------------+
+|     2000000 |
+|     3000000 |
++-------------+
+2 rows in set (0.04 sec)
+
+mysql> SELECT gender,AVG(salary) FROM employee_payroll GROUP BY gender;
++--------+-------------+
+| gender | AVG(salary) |
++--------+-------------+
+| M      |     2000000 |
+| F      |     3000000 |
++--------+-------------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT gender,COUNT(name) FROM employee_payroll GROUP BY gender;
++--------+-------------+
+| gender | COUNT(name) |
++--------+-------------+
+| M      |           2 |
+| F      |           1 |
++--------+-------------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT gender,SUM(salary) FROM employee_payroll GROUP BY gender;
++--------+-------------+
+| gender | SUM(salary) |
++--------+-------------+
+| M      |     4000000 |
+| F      |     3000000 |
++--------+-------------+
+2 rows in set (0.00 sec)
+
 
